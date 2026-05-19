@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/J8rl-Chik/economic-quiz/issues"
   },
-  "homepage": "https://github.com/J8rl-Chik/economic-quiz#readme"
+  "homepage": "https://github.com/J8rl-Chik/economic-quiz#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
+    "husky": "^9.1.7"
+  }
 }
