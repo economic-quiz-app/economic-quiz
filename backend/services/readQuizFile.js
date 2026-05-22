@@ -1,12 +1,11 @@
 import fs from "node:fs/promises";
 
 const QUIZ_FILE_PATH = "./backend/data/quiz.json";
-
 const readQuizFile = async () => {
-  const QUIZ_DATA = await fs.readFile(QUIZ_FILE_PATH, "utf-8");
-  const QUIZZES = JSON.parse(QUIZ_DATA);
+  const quizData = await fs.readFile(QUIZ_FILE_PATH, "utf-8");
+  const quizzes = JSON.parse(quizData);
 
-  return QUIZZES.map((quiz) => ({
+  return quizzes.map(quiz => ({
     id: quiz["번호"],
     type: quiz["구분"],
     question: quiz["문제내용"],
