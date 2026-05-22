@@ -9,6 +9,10 @@ export default defineConfig([
     plugins: { js },
     extends: ["js/recommended"],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    rules: {
+      "lines-between-class-members": "error",
+      "arrow-parens": "error",
+    },
   },
   { files: ["**/*.js"], languageOptions: { sourceType: "module" } },
   eslintConfigPrettier,
