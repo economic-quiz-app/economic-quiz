@@ -8,20 +8,14 @@ export default defineConfig([
     files: ["**/*.{js,mjs,cjs}"],
     plugins: { js },
     extends: ["js/recommended"],
-    languageOptions: { globals: { ...globals.browser, ...globals.node } },
-    rules: {
-      "lines-between-class-members": "error",
-      "object-curly-newline": [
-        "error",
-        {
-          ObjectExpression: { multiline: true, minProperties: 2 },
-          ObjectPattern: { multiline: true, minProperties: 2 },
-          ImportDeclaration: { multiline: true, minProperties: 2 },
-          ExportDeclaration: { multiline: true, minProperties: 2 },
-        },
-      ],
+    languageOptions: {
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
     },
-    eslintConfigPrettier,
+    rules: { "lines-between-class-members": "error" },
   },
-  { files: ["**/*.js"], languageOptions: { sourceType: "module" } },
+  eslintConfigPrettier,
 ]);
