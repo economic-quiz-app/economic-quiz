@@ -1,8 +1,7 @@
 import http from "node:http";
+import loadQuizzes from "../services/loadQuizzes.js";
 
-import readQuizFile from "../services/readQuizFile.js";
-
-const QUIZZES = await readQuizFile();
+const QUIZZES = await loadQuizzes();
 
 const SERVER = http.createServer(async (request, response) => {
   response.writeHead(200, {
