@@ -1,21 +1,29 @@
 import http from "node:http";
+
 import loadQuizzes from "../services/loadQuizzes.js";
 
-const QUIZZES = await loadQuizzes();
+let quizzes = [];
 
-const SERVER = http.createServer(async (request, response) => {
+try {
+  quizzes = await loadQuizzes();
+} catch (error) {
+  console.error(error);
+  process.exit(1);
+}
+
+const server = http.createServer(async (request, response) => {
   response.writeHead(200, {
     "Content-Type": "application/json; charset=utf-8",
   });
-  response.end(JSON.stringify(QUIZZES));
+  response.end(JSON.stringify(quizzes));
 });
 
-SERVER.listen(8080);
+server.listen(8080);
 
-SERVER.on("listening", () => {
+server.on("listening", () => {
   console.log("Server is running on http://localhost:8080");
 });
 
-SERVER.on("error", err => {
-  console.error("Server error:", err);
+server.on("error", error => {
+  console.error("Server error:", error);
 });

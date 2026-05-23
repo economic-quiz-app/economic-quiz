@@ -1,12 +1,17 @@
 import fs from "node:fs/promises";
 
+/** @import { RawQuiz, Quiz } from '../../types.js' */
+
 const QUIZ_FILE_PATH = "./backend/data/quiz.json";
 
-/** @returns {Promise<import('../../types.d.ts').Quiz[]>} */
+/**
+ * 퀴즈 데이터를 읽어와 서버 포맷으로 변환하여 반환합니다.
+ * @returns {Promise<Quiz[]>}
+ * */
 const loadQuizzes = async () => {
   const quizData = await fs.readFile(QUIZ_FILE_PATH, "utf-8");
 
-  /** @type {import('../../types.d.ts').RawQuiz[]} */
+  /** @type {RawQuiz[]} */
   const quizzes = JSON.parse(quizData);
 
   return quizzes.map(quiz => ({
