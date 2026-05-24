@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nodemon controllers/quizController.js"
+    "dev": "nodemon --experimental-vm-modules controllers/quizController.js"
   }
 }

@@ -1,7 +1,5 @@
-"use client";
-
-import { useState } from "react";
-import QuizQuestion from "./QuizQuestion";
+import React, { useState } from "react";
+import QuizQuestion from "./QuizQuestion.jsx";
 
 function Quiz() {
   const [start, setStart] = useState(false);
@@ -14,9 +12,8 @@ function Quiz() {
       </>
     );
   }
-  if (start) {
-    return <QuizQuestion start={setStart} />;
-  }
+
+  return <QuizQuestion start={setStart} />;
 }
 
 export default Quiz;

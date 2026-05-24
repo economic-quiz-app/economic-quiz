@@ -1,6 +1,6 @@
 import React from "react";
 
-function Reslut({ info, onClick }) {
+function Result({ info, onClick }) {
   return (
     <>
       <div>결과</div>
@@ -11,4 +11,4 @@ function Reslut({ info, onClick }) {
   );
 }
 
-export default Reslut;
+export default Result;

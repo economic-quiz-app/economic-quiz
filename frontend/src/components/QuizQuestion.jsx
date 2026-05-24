@@ -1,27 +1,26 @@
-import React from "react";
-import question from "../data/questions.js";
-import { useState } from "react";
-import Button from "./QuizButton.jsx";
-import Result from "./Reslut.jsx";
+import React, { useState } from "react";
+import QuizButton from "./QuizButton.jsx";
+import Result from "./Result.jsx";
+import useQuestions from "../hooks/useQuestions.js";
 
 function QuizQuestion({ start }) {
+  const { questions, loading } = useQuestions();
   const [currentQ, setCurrentQ] = useState(0);
-
   const [info, setInfo] = useState({ current: 0, wrong: 0, isCorrect: null });
-
   const [answered, setAnswered] = useState(false);
 
-  const QuizQuestion = question[currentQ];
+  if (loading) return <p>문제를 불러오는 중...</p>;
 
-  const isEnd = currentQ >= question.length;
+  const isEnd = currentQ >= questions.length;
+  const currentQuestion = questions[currentQ];
 
   const chk_answer = index => {
-    const chk = index + 1 === QuizQuestion.answer;
+    const chk = index === currentQuestion.answer;
 
     setInfo(prev => ({
       current: chk ? prev.current + 1 : prev.current,
       wrong: chk ? prev.wrong : prev.wrong + 1,
-      isCorrect: chk ? true : false,
+      isCorrect: chk,
     }));
 
     setAnswered(prev => !prev);
@@ -40,7 +39,6 @@ function QuizQuestion({ start }) {
   };
 
   if (isEnd) {
-    // 모든 문제를 다 푼 경우
     return <Result info={info} onClick={handleEnd} />;
   }
 
@@ -48,18 +46,18 @@ function QuizQuestion({ start }) {
     <>
       <div>
         <h1>문제</h1>
-        <p>{QuizQuestion.question}</p>
+        <p>{currentQuestion.question}</p>
       </div>
       <div>
-        <Button choices={QuizQuestion.choices} onAnswer={chk_answer} />
+        <QuizButton choices={currentQuestion.choices} onAnswer={chk_answer} />
       </div>
 
       {answered && (
         <div>
           <p>{info.isCorrect ? "정답입니다." : "오답입니다."}</p>
-          <p>{QuizQuestion.description}</p>
+          <p>{currentQuestion.explanation}</p>
           <button onClick={handleNext}>
-            {currentQ === question.length - 1 ? "결과확인" : "다음문제"}
+            {currentQ === questions.length - 1 ? "결과확인" : "다음문제"}
           </button>
         </div>
       )}

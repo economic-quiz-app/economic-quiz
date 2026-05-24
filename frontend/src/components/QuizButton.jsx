@@ -1,6 +1,6 @@
 import React from "react";
 
-function Ox({ choices, onAnswer }) {
+function QuizButton({ choices, onAnswer }) {
   return (
     <div>
       <ul>
@@ -14,4 +14,4 @@ function Ox({ choices, onAnswer }) {
   );
 }
 
-export default Ox;
+export default QuizButton;
