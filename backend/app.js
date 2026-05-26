@@ -6,39 +6,35 @@ const server = http.createServer();
 
 server.on('request', async (request, response) => {
   /**
-   * @param {string} method
-   * @returns {method is keyof typeof quizRouter}
+   * @param {string} requestMethod
+   * @returns {requestMethod is keyof typeof quizRouter}
    */
-  const isValidMethod = method => {
-    return method in quizRouter;
+  const isValidMethod = requestMethod => {
+    return requestMethod in quizRouter;
   };
 
-  const {method: rawMethod, url} = request;
+  const {method, url} = request;
 
-  if (!rawMethod || !url) {
+  if (!method || !url) {
     response.writeHead(400, {'Content-Type': 'text/plain'});
     response.end('Invalid request');
     return;
   }
 
-  const method = rawMethod.toUpperCase();
-
   if (!isValidMethod(method)) {
     response.writeHead(405);
-    response.end('Method Not Allowed');
+    response.end(`Method is not allowed: ${method}`);
 
     return;
   }
 
-  const forcedMethod = method;
-
-  if (!quizRouter[forcedMethod]) {
+  if (!quizRouter[method]) {
     response.writeHead(405, {'Content-Type': 'text/plain'});
-    response.end('Method Not Allowed');
+    response.end(`Method is not allowed: ${method}`);
     return;
   }
 
-  const controller = quizRouter[forcedMethod][url];
+  const controller = quizRouter[method][url];
 
   if (!controller) {
     response.writeHead(404, {'Content-Type': 'text/plain'});
