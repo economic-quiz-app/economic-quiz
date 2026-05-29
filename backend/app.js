@@ -22,7 +22,8 @@ server.on('request', async (request, response) => {
     return;
   }
 
-  const result = quizRouter.findController(method, url);
+  const [path] = url.split('?');
+  const result = quizRouter.findController(method, path);
 
   if (!result) {
     response.writeHead(HTTP_STATUS.NOT_FOUND, {'Content-Type': 'text/plain'});

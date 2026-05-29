@@ -5,9 +5,29 @@ import loadQuizzes from '../services/loadQuizzes.js';
 
 const quizController = {
   /** @type {Controller} */
-  async getQuizzes(_request, response) {
+  async getQuizzes(request, response) {
     try {
-      const quizzes = await loadQuizzes();
+      const {searchParams} = new URL(request.url ?? '/', 'http://localhost');
+      const isRandom = searchParams.get('random') === 'true';
+      const countParam = searchParams.get('count');
+      const count = countParam !== null ? Number(countParam) : null;
+      let quizzes = await loadQuizzes();
+
+      if (count !== null && (!Number.isInteger(count) || quizzes.length < count || count <= 0)) {
+        response.writeHead(HTTP_STATUS.BAD_REQUEST, {'Content-Type': 'application/json; charset=utf-8'});
+        response.end(JSON.stringify({message: '유효하지 않은 count 값입니다.'}));
+
+        return;
+      }
+
+      if (isRandom) {
+        quizzes = quizzes.sort(() => Math.random() - 0.5);
+      }
+
+      if (count !== null) {
+        quizzes = quizzes.slice(0, count);
+      }
+
       response.writeHead(HTTP_STATUS.OK, {'Content-Type': 'application/json; charset=utf-8'});
       response.end(JSON.stringify(quizzes));
     } catch (error) {
