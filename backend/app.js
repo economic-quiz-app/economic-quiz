@@ -9,6 +9,8 @@ const server = http.createServer();
 server.on('request', async (request, response) => {
   const {method, url} = request;
 
+  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+
   if (!method || !url) {
     response.writeHead(HTTP_STATUS.BAD_REQUEST, {'Content-Type': 'text/plain'});
     response.end('Invalid request');

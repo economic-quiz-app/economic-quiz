@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-// GET /quizzes?random=true&count=5 호출 → 백엔드에서 랜덤 5문제 반환
+// 마운트 시 백엔드에서 랜덤 5문제를 fetch해서 반환
 function useQuestions() {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);

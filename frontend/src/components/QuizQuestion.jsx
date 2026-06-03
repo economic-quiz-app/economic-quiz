@@ -1,16 +1,24 @@
-import React from "react";
-import QuizButton from "./QuizButton.jsx"; // 보기 버튼 (정답/오답 색상 처리)
-import "../css/QuizQuestion.css";
+import QuizButton from "./QuizButton.jsx";
+import {
+  CardWrapper,
+  CardLabel,
+  CardQuestion,
+  CardAnswer,
+  CardExplanation,
+  CardAnswerButtons,
+  NextButton,
+  StopButton,
+} from "../styles/QuizQuestion.styles.js";
 
-// 문제 카드 UI — 문제 텍스트, 보기 버튼, 해설, 다음문제 버튼
+// 문제 화면 — 문제 텍스트, 보기 버튼, 해설, 중단/다음 버튼
 function QuizQuestion({ question, answered, selectedIndex, onAnswer, onNext, onEnd, isLast }) {
   return (
-    <div className="card">
+    <CardWrapper>
       <div>
-        <p className="card-label">문제</p>
-        <p className="card-question">{question.question}</p>
+        <CardLabel>문제</CardLabel>
+        <CardQuestion>{question.question}</CardQuestion>
       </div>
-      {/* selectedIndex, correctIndex를 넘겨 정답/오답 색상 처리 */}
+
       <QuizButton
         choices={question.choices}
         onAnswer={onAnswer}
@@ -18,22 +26,24 @@ function QuizQuestion({ question, answered, selectedIndex, onAnswer, onNext, onE
         selectedIndex={selectedIndex}
         correctIndex={question.answer}
       />
-      <div className="card-answer-buttons">
-        <button className="btn-stop" onClick={onEnd}>
+
+      <CardAnswerButtons>
+        <StopButton variant="contained" onClick={onEnd}>
           중단하기
-        </button>
+        </StopButton>
         {answered && (
-          <button className="btn-next" onClick={onNext}>
+          <NextButton variant="contained" onClick={onNext}>
             {isLast ? "결과확인" : "다음문제"}
-          </button>
+          </NextButton>
         )}
-      </div>
+      </CardAnswerButtons>
+
       {answered && (
-        <div className="card-answer">
-          <p className="card-explanation">{question.explanation}</p>
-        </div>
+        <CardAnswer>
+          <CardExplanation>{question.explanation}</CardExplanation>
+        </CardAnswer>
       )}
-    </div>
+    </CardWrapper>
   );
 }
 

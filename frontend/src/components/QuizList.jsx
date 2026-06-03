@@ -1,5 +1,4 @@
-import React from "react";
-
+// 전체 문제 목록 화면 — 문제 번호, 유형, 질문 텍스트 나열
 function QuizList({ questions, onBack }) {
   return (
     <div>
@@ -7,9 +6,7 @@ function QuizList({ questions, onBack }) {
       <ul>
         {questions.map(q => (
           <li key={q.id}>
-            <strong>
-              {q.id}. [{q.type}]
-            </strong>{" "}
+            <strong>{q.id}. [{q.type}]</strong>{" "}
             {q.question}
           </li>
         ))}
