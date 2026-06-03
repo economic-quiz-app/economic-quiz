@@ -1,4 +1,4 @@
-import Quiz from "./components/Quiz.jsx";
+import Quiz from './components/Quiz.jsx';
 
 function App() {
   return <Quiz />;

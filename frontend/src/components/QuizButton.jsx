@@ -1,14 +1,13 @@
-import { ChoiceList, ChoiceButton } from "../styles/QuizButton.styles.js";
+import {ChoiceButton, ChoiceList} from '../styles/QuizButton.styles.js';
 
-// 보기 버튼 목록 — 답변 선택 후 정답/오답에 따라 색상 변경
-// selectedIndex: 사용자가 선택한 보기 인덱스
-// correctIndex: 정답 인덱스
-function QuizButton({ choices, onAnswer, disabled, selectedIndex, correctIndex }) {
+// 보기 버튼 목록 — 답변 선택 후 className으로 정답/오답 색상 전환
+// btn-correct / btn-wrong 스타일은 QuizButton.styles.js에서 정의
+function QuizButton({choices, onAnswer, disabled, selectedIndex, correctIndex}) {
   const getClassName = index => {
-    if (!disabled) return "";
-    if (index === correctIndex) return "btn-correct";
-    if (index === selectedIndex) return "btn-wrong";
-    return "";
+    if (!disabled) return '';
+    if (index === correctIndex) return 'btn-correct';
+    if (index === selectedIndex) return 'btn-wrong';
+    return '';
   };
 
   return (

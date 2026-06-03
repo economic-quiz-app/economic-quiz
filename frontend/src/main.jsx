@@ -1,8 +1,9 @@
-import { createRoot } from "react-dom/client";
-import CssBaseline from "@mui/material/CssBaseline";
-import App from "./App.jsx";
+import CssBaseline from '@mui/material/CssBaseline';
+import {createRoot} from 'react-dom/client';
 
-createRoot(document.getElementById("root")).render(
+import App from './App.jsx';
+
+createRoot(document.getElementById('root')).render(
   <>
     <CssBaseline />
     <App />

@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 
-/** @import { RawQuiz, Quiz } from '../../types.js' */
+/** @import { RawQuiz, Quiz } from '../types.js' */
 
 const QUIZ_FILE_PATH = './backend/data/quiz.json';
 

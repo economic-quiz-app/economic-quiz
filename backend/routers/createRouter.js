@@ -1,4 +1,4 @@
-/** @import { Controller, Route, StaticRoute, DynamicRoute } from '../../types.js' */
+/** @import { Controller, Route, StaticRoute, DynamicRoute } from '../types.js' */
 
 /** @param {Route} methodRoute */
 const createRouter = methodRoute => {

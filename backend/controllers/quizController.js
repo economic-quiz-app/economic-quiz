@@ -2,7 +2,7 @@ import {HTTP_STATUS} from '../constants/httpStatusCode.js';
 import {SERVER_HOST} from '../constants/server.js';
 import loadQuizzes from '../services/loadQuizzes.js';
 
-/** @import { Controller } from '../../types.js' */
+/** @import { Controller } from '../types.js' */
 
 const quizController = {
   /** @type {Controller} */
