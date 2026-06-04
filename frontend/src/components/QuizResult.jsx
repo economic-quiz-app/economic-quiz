@@ -10,24 +10,24 @@ import {
   WrongText
 } from '../styles/QuizResult.styles.js';
 
-function Result({score, onClick}) {
+function QuizResult({score, onExit}) {
   return (
     <ResultWrapper>
       <ResultLabel>결과</ResultLabel>
-      <ResultScore>정답 {score.current} / 5</ResultScore>
+      <ResultScore>정답 {score.correct} / 5</ResultScore>
       <ResultDetail>
         <Typography>
-          정답 <CorrectText>{score.current}개</CorrectText>
+          정답 <CorrectText>{score.correct}개</CorrectText>
         </Typography>
         <Typography>
           오답 <WrongText>{score.wrong}개</WrongText>
         </Typography>
       </ResultDetail>
-      <EndButton variant="contained" onClick={onClick}>
+      <EndButton variant="contained" onClick={onExit}>
         종료
       </EndButton>
     </ResultWrapper>
   );
 }
 
-export default Result;
+export default QuizResult;

@@ -1,7 +1,7 @@
 import {CardLabel, CardQuestion, CardWrapper} from '../styles/QuizQuestion.styles.js';
 import QuizButton from './QuizButton.jsx';
 
-function QuizQuestion({question, answered, selectedIndex, onAnswer, onEnd}) {
+function QuizQuestion({question, isAnswered, selectedIndex, onAnswer, onEnd}) {
   return (
     <CardWrapper>
       <div>
@@ -12,7 +12,7 @@ function QuizQuestion({question, answered, selectedIndex, onAnswer, onEnd}) {
       <QuizButton
         choices={question.choices}
         onAnswer={onAnswer}
-        disabled={answered}
+        disabled={isAnswered}
         selectedIndex={selectedIndex}
         correctIndex={question.answer}
       />

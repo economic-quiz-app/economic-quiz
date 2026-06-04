@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 // 마운트 시 백엔드에서 랜덤 5문제를 fetch해서 반환
 function useQuestions() {
   const [questions, setQuestions] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('http://localhost:8080/quizzes?random=true&count=5')
@@ -14,7 +14,7 @@ function useQuestions() {
       });
   }, []);
 
-  return {questions, loading};
+  return {questions, isLoading};
 }
 
 export default useQuestions;

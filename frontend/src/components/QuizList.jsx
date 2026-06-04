@@ -2,11 +2,15 @@ import {Box, Button, List, ListItem, Typography} from '@mui/material';
 
 function QuizList({questions, onBack}) {
   return (
-    <Box minHeight="100dvh" display="flex" flexDirection="column" padding="32px 16px" backgroundColor="#f5f5f5" gap="16px">
-      <Button
-        onClick={onBack}
-        sx={{alignSelf: 'flex-start', textTransform: 'none', color: '#1a3a5c'}}
-      >
+    <Box
+      minHeight="100dvh"
+      display="flex"
+      flexDirection="column"
+      padding="32px 16px"
+      backgroundColor="#f5f5f5"
+      gap="16px"
+    >
+      <Button onClick={onBack} sx={{alignSelf: 'flex-start', textTransform: 'none', color: '#1a3a5c'}}>
         ← 돌아가기
       </Button>
 

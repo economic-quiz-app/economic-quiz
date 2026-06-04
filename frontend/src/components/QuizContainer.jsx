@@ -1,16 +1,16 @@
 import useQuiz from '../hooks/useQuiz.js';
 import QuizAnswer from './QuizAnswer.jsx';
 import QuizQuestion from './QuizQuestion.jsx';
-import Result from './QuizResult.jsx';
+import QuizResult from './QuizResult.jsx';
 
 function QuizContainer({onExit, questions}) {
   const {
     currentQuestion,
     score,
     selectedIndex,
-    answered,
+    isAnswered,
     isCorrect,
-    showAnswer,
+    isAnswerShown,
     isEnd,
     isLast,
     handleAnswer,
@@ -18,10 +18,10 @@ function QuizContainer({onExit, questions}) {
   } = useQuiz(questions);
 
   if (isEnd) {
-    return <Result score={score} onClick={onExit} />;
+    return <QuizResult score={score} onExit={onExit} />;
   }
 
-  if (showAnswer) {
+  if (isAnswerShown) {
     return (
       <QuizAnswer
         isCorrect={isCorrect}
@@ -37,7 +37,7 @@ function QuizContainer({onExit, questions}) {
   return (
     <QuizQuestion
       question={currentQuestion}
-      answered={answered}
+      isAnswered={isAnswered}
       selectedIndex={selectedIndex}
       onAnswer={handleAnswer}
       onEnd={onExit}
