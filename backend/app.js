@@ -30,7 +30,11 @@ server.on('request', async (request, response) => {
     return;
   }
 
-  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+  const allowedOrigins = ['http://localhost:5173', 'https://economic-quiz-seven.vercel.app'];
+  const origin = request.headers.origin ?? '';
+  if (allowedOrigins.includes(origin)) {
+    response.setHeader('Access-Control-Allow-Origin', origin);
+  }
   response.setHeader('Access-Control-Allow-Methods', 'GET');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
