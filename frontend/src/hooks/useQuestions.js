@@ -6,7 +6,7 @@ function useQuestions() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8080/quizzes?random=true&count=5')
+    fetch('https://quiz-api-jpp7.onrender.com/quizzes?random=true&count=5')
       .then(res => res.json())
       .then(data => {
         setQuestions(data);
