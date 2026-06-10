@@ -1,2 +1,4 @@
-export const SERVER_PORT = process.env.PORT || 8080;
-export const SERVER_HOST = 'http://localhost';
+export const SERVER = {
+  PORT: process.env.PORT || 8080,
+  HOST: process.env.HOST || 'http://localhost'
+};

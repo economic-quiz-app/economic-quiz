@@ -1,4 +1,6 @@
 /** @import { IncomingMessage, ServerResponse } from 'node:http' */
+/** @import { Request, Response} from 'express' */
+/** @import { ParsedQs  } from 'qs' */
 
 /**
  * @typedef {Object} RawQuiz
@@ -23,7 +25,7 @@
  * @property {string} explanation - 퀴즈 해설
  */
 
-/** @typedef {(request: IncomingMessage, response: ServerResponse, params?: Record<string, string>) => Promise<void>} Controller */
+/** @typedef {(request: Request, response: Response,) => Promise<void>} Controller */
 /** @typedef {Record.<'GET', Object.<string, Controller>>} Route */
 /** @typedef {Object<string, Controller>} StaticRoute */
 /** @typedef {Object<string, { regex: RegExp, paramNames: string[], controller: Controller }>} DynamicRoute */
