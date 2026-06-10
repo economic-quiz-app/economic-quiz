@@ -38,6 +38,15 @@ export const InfoCard = styled(Box)({
   gap: '12px'
 });
 
+// InfoCard 좌측의 작은 원형 뱃지 (숫자, 체크 표시 등)
+// flexShrink: 0 — 텍스트 길이에 관계없이 크기 고정
+// size prop은 사용처에서 "24px"로 전달
+export const InfoBadge = styled(IconCircleBase)({
+  fontSize: '0.875rem',
+  fontWeight: 'bold',
+  flexShrink: 0
+});
+
 // 퀴즈 시작 버튼
 export const StartButton = styled(PrimaryButton)({
   width: '100%',

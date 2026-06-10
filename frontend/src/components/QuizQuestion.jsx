@@ -35,7 +35,6 @@ function QuizQuestion({question, currentIndex, totalCount, isAnswered, selectedI
           onAnswer={onAnswer}
           disabled={isAnswered}
           selectedIndex={selectedIndex}
-          correctIndex={question.answer}
         />
       </QuestionCard>
 

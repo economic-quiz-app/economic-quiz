@@ -25,19 +25,25 @@ function QuizAnswer({isCorrect, correctAnswer, explanation, isLast, onNext, onEn
           )}
         </AnswerIconCircle>
 
-        <AnswerResultText isCorrect={isCorrect}>
-          {isCorrect ? '정답입니다!' : '오답입니다'}
-        </AnswerResultText>
-        <Typography fontSize="0.875rem" color="#777">정답: {correctAnswer}</Typography>
+        <AnswerResultText isCorrect={isCorrect}>{isCorrect ? '정답입니다!' : '오답입니다'}</AnswerResultText>
+        <Typography fontSize="0.875rem" color="#777">
+          정답: {correctAnswer}
+        </Typography>
       </AnswerResult>
 
       <ExplanationCard>
-        <Typography fontSize="0.875rem" fontWeight="bold" color="#333" mb="8px">해설</Typography>
-        <Typography fontSize="0.875rem" color="#555" lineHeight={1.7}>{explanation}</Typography>
+        <Typography fontSize="0.875rem" fontWeight="bold" color="#333" mb="8px">
+          해설
+        </Typography>
+        <Typography fontSize="0.875rem" color="#555" lineHeight={1.7}>
+          {explanation}
+        </Typography>
       </ExplanationCard>
 
       <AnswerButtons>
-        <StopButton variant="contained" onClick={onEnd}>종료</StopButton>
+        <StopButton variant="contained" onClick={onEnd}>
+          종료
+        </StopButton>
         <NextButton variant="contained" onClick={onNext}>
           {isLast ? '결과 보기' : '다음 문제'}
         </NextButton>

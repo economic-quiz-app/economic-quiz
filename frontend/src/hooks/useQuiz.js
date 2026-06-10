@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 function useQuiz(questions) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -11,16 +11,6 @@ function useQuiz(questions) {
   const isEnd = currentQuestionIndex >= questions.length;
   const currentQuestion = questions[currentQuestionIndex];
   const isLast = currentQuestionIndex === questions.length - 1;
-
-  useEffect(() => {
-    if (!isAnswered) return;
-
-    const timer = setTimeout(() => {
-      setAnswerShown(true);
-    }, 600);
-
-    return () => clearTimeout(timer);
-  }, [isAnswered]);
 
   const handleSelect = index => {
     if (isAnswered) return;
@@ -36,6 +26,7 @@ function useQuiz(questions) {
     }));
     setCorrect(correct);
     setAnswered(true);
+    setAnswerShown(true);
   };
 
   const handleNext = () => {

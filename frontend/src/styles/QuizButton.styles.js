@@ -17,10 +17,8 @@ export const ChoiceList = styled(Box)({
 // transition — 선택 시 테두리/배경 색상 변화를 0.15초 동안 부드럽게 전환
 //
 // className에 따른 상태별 스타일:
-//   '.selected'     — 선택된 상태 (제출 전): 파란 테두리 + 연한 파란 배경
-//   '&:disabled'    — 제출 후 비활성 상태: 기본 텍스트 색 유지 (MUI 기본값은 흐리게 변함)
-//   '.btn-correct:disabled' — 정답 버튼: 초록 테두리 + 연한 초록 배경
-//   '.btn-wrong:disabled'   — 오답으로 선택한 버튼: 빨간 테두리 + 연한 빨간 배경
+//   '.selected'  — 선택된 상태: 파란 테두리 + 연한 파란 배경
+//   '&:disabled' — 제출 후 비활성 상태: 기본 텍스트 색 유지 (MUI 기본값은 흐리게 변함)
 export const ChoiceButton = styled(Button)({
   width: '100%',
   padding: '14px 16px',
@@ -47,15 +45,5 @@ export const ChoiceButton = styled(Button)({
   },
   '&:disabled': {
     color: '#333'
-  },
-  '&.btn-correct:disabled': {
-    backgroundColor: '#f0faf4',
-    borderColor: '#1a7a3d',
-    color: '#1a7a3d'
-  },
-  '&.btn-wrong:disabled': {
-    backgroundColor: '#fff5f5',
-    borderColor: '#d93a3a',
-    color: '#d93a3a'
   }
 });

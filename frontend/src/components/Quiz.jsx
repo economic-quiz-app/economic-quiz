@@ -3,12 +3,12 @@ import {Box, Typography} from '@mui/material';
 import {useState} from 'react';
 
 import useQuestions from '../hooks/useQuestions.js';
-import {IconCircle, InfoCard, QuizCard, QuizWrapper, StartButton} from '../styles/Quiz.styles.js';
+import {IconCircle, InfoBadge, InfoCard, QuizCard, QuizWrapper, StartButton} from '../styles/Quiz.styles.js';
 import QuizContainer from './QuizContainer.jsx';
 
 function Quiz() {
   const [isStarted, setStarted] = useState(false);
-  const {questions, isLoading} = useQuestions();
+  const {questions, isLoading, isError} = useQuestions();
 
   if (isStarted) {
     return <QuizContainer onExit={() => setStarted(false)} questions={questions} />;
@@ -32,17 +32,9 @@ function Quiz() {
         </Typography>
 
         <InfoCard>
-          <Box
-            sx={{
-              width: 24, height: 24, borderRadius: '50%',
-              backgroundColor: '#dde4ff', color: '#3a5bd9',
-              fontSize: '0.75rem', fontWeight: 'bold',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              flexShrink: 0
-            }}
-          >
+          <InfoBadge size="24px" sx={{backgroundColor: '#dde4ff', color: '#3a5bd9', fontSize: '0.75rem'}}>
             5
-          </Box>
+          </InfoBadge>
           <Box sx={{display: 'flex', flexDirection: 'column', gap: '2px'}}>
             <Typography fontSize="0.875rem" fontWeight="bold" color="#222">총 5개의 문제</Typography>
             <Typography fontSize="0.8rem" color="#888">각 문제마다 4개의 선택지가 제공됩니다</Typography>
@@ -50,26 +42,30 @@ function Quiz() {
         </InfoCard>
 
         <InfoCard>
-          <Box
-            sx={{
-              width: 24, height: 24, borderRadius: '50%',
-              backgroundColor: '#e8eeff', color: '#3a5bd9',
-              fontSize: '0.875rem',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              flexShrink: 0
-            }}
-          >
+          <InfoBadge size="24px" sx={{backgroundColor: '#e8eeff', color: '#3a5bd9'}}>
             ✓
-          </Box>
+          </InfoBadge>
           <Box sx={{display: 'flex', flexDirection: 'column', gap: '2px'}}>
             <Typography fontSize="0.875rem" fontWeight="bold" color="#222">즉시 피드백</Typography>
             <Typography fontSize="0.8rem" color="#888">각 문제의 정답과 해설을 바로 확인하세요</Typography>
           </Box>
         </InfoCard>
 
-        <StartButton variant="contained" onClick={() => setStarted(true)} disabled={isLoading}>
+        <StartButton variant="contained" onClick={() => setStarted(true)} disabled={isLoading || isError}>
           시작하기
         </StartButton>
+
+        {isLoading && (
+          <Typography fontSize="0.8rem" color="#999" textAlign="center">
+            문제를 불러오는 중입니다...
+          </Typography>
+        )}
+
+        {isError && (
+          <Typography fontSize="0.8rem" color="#d93a3a" textAlign="center">
+            문제를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
+          </Typography>
+        )}
       </QuizCard>
     </QuizWrapper>
   );
