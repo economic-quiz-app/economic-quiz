@@ -1,70 +1,54 @@
-import {styled} from '@mui/material';
-import {Box, Button} from '@mui/material';
+import {Box, styled} from '@mui/material';
 
-export const QuizWrapper = styled(Box)(({theme}) => ({
-  minHeight: '100dvh', // 모바일 주소창 높이 제외한 실제 뷰포트 (vh보다 정확)
+import {IconCircleBase, PrimaryButton, ScreenWrapper} from './common.styles.js';
+
+// Quiz.jsx 시작화면 전체를 감싸는 레이아웃 컨테이너
+export const QuizWrapper = ScreenWrapper;
+
+// 시작화면의 카드 영역 — 제목, 안내 정보, 시작 버튼을 감싸는 흰색 카드
+// maxWidth: '400px' — 데스크탑에서 카드가 너무 넓어지지 않도록 최대 너비 제한
+export const QuizCard = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
-  padding: '0 16px',
-  backgroundColor: '#f5f5f5',
-  [theme.breakpoints.up('sm')]: {
-    padding: '0 32px'
-  }
-}));
-
-export const QuizButtonGroup = styled(Box)(({theme}) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '16px',
+  gap: '12px',
   width: '100%',
   maxWidth: '400px',
-  [theme.breakpoints.up('sm')]: {
-    flexDirection: 'row',
-    maxWidth: '600px',
-    width: 'auto'
-  }
-}));
+  padding: '40px 24px',
+  borderRadius: '24px',
+  backgroundColor: 'white',
+  boxShadow: '0 2px 16px rgba(0,0,0,0.07)'
+});
 
-export const StartButton = styled(Button)(({theme}) => ({
-  padding: '24px 0',
-  borderRadius: '12px',
-  backgroundColor: '#aecbfa',
-  color: '#1a3a5c',
-  fontWeight: 'bold',
-  fontSize: '1rem',
-  textTransform: 'none',
-  boxShadow: 'none',
-  '&:hover': {
-    backgroundColor: '#97b8f5',
-    boxShadow: 'none'
-  },
-  [theme.breakpoints.up('sm')]: {
-    fontSize: '1.125rem',
-    padding: '20px 40px'
-  }
-}));
+// 카드 상단 아이콘을 감싸는 원형 배경
+export const IconCircle = styled(IconCircleBase)({
+  marginBottom: '8px',
+  backgroundColor: '#e8eeff'
+});
 
-export const ListButton = styled(Button)(({theme}) => ({
-  padding: '24px 0',
+// 퀴즈 안내 정보(문제 수, 즉시 피드백)를 표시하는 행 컨테이너
+// alignItems: 'flex-start' — 아이콘과 텍스트의 높이가 다를 때 위쪽 기준으로 정렬
+export const InfoCard = styled(Box)({
+  display: 'flex',
+  alignItems: 'flex-start',
+  gap: '12px',
+  width: '100%',
+  padding: '14px 16px',
   borderRadius: '12px',
-  backgroundColor: '#b7e1cd',
-  color: '#1a3d2b',
+  backgroundColor: '#f7f8fc'
+});
+
+// InfoCard 좌측의 작은 원형 뱃지 (숫자, 체크 표시 등)
+// flexShrink: 0 — 텍스트 길이에 관계없이 크기 고정
+// size prop은 사용처에서 "24px"로 전달
+export const InfoBadge = styled(IconCircleBase)({
+  fontSize: '0.875rem',
   fontWeight: 'bold',
-  fontSize: '1rem',
-  textTransform: 'none',
-  boxShadow: 'none',
-  '&:hover': {
-    backgroundColor: '#a0d4bc',
-    boxShadow: 'none'
-  },
-  '&:disabled': {
-    backgroundColor: '#b7e1cd',
-    opacity: 0.5
-  },
-  [theme.breakpoints.up('sm')]: {
-    fontSize: '1.125rem',
-    padding: '20px 40px'
-  }
-}));
+  flexShrink: 0
+});
+
+// 퀴즈 시작 버튼
+export const StartButton = styled(PrimaryButton)({
+  width: '100%',
+  marginTop: '8px'
+});

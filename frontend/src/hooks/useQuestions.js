@@ -1,20 +1,27 @@
 import {useEffect, useState} from 'react';
 
-// 마운트 시 백엔드에서 랜덤 5문제를 fetch해서 반환
 function useQuestions() {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   useEffect(() => {
     fetch('https://quiz-api-jpp7.onrender.com/quizzes?random=true&count=5')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('서버 응답 오류');
+        return res.json();
+      })
       .then(data => {
         setQuestions(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
         setLoading(false);
       });
   }, []);
 
-  return {questions, isLoading};
+  return {questions, isLoading, isError};
 }
 
 export default useQuestions;

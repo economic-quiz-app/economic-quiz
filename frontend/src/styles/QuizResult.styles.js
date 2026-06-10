@@ -1,73 +1,32 @@
-import {styled} from '@mui/material';
-import {Box, Button, Typography} from '@mui/material';
+import {Box, styled} from '@mui/material';
 
-export const ResultWrapper = styled(Box)(({theme}) => ({
-  minHeight: '100dvh',
+import {IconCircleBase, PrimaryButton, ScreenWrapper} from './common.styles.js';
+
+// 결과 화면 전체를 감싸는 레이아웃 컨테이너
+export const ResultWrapper = ScreenWrapper;
+
+// 결과를 표시하는 흰색 카드 — 아이콘, 점수, 동기 메시지, 버튼을 세로로 배치
+export const ResultCard = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
-  padding: '0 16px',
-  backgroundColor: '#f5f5f5',
-  gap: '16px',
-  [theme.breakpoints.up('sm')]: {
-    padding: '0 32px',
-    gap: '24px'
-  }
-}));
-
-export const ResultLabel = styled(Typography)(({theme}) => ({
-  fontSize: '0.875rem',
-  color: '#888',
-  [theme.breakpoints.up('sm')]: {
-    fontSize: '1rem'
-  }
-}));
-
-export const ResultScore = styled(Typography)(({theme}) => ({
-  fontSize: '2.25rem',
-  fontWeight: 'bold',
-  color: '#222',
-  [theme.breakpoints.up('sm')]: {
-    fontSize: '3rem'
-  }
-}));
-
-export const ResultDetail = styled(Box)(({theme}) => ({
-  display: 'flex',
-  gap: '24px',
-  [theme.breakpoints.up('sm')]: {
-    gap: '40px',
-    fontSize: '1.125rem'
-  }
-}));
-
-export const CorrectText = styled('span')({
-  color: '#1a3d2b',
-  fontWeight: 'bold'
+  gap: '12px',
+  width: '100%',
+  maxWidth: '400px',
+  padding: '40px 24px',
+  borderRadius: '24px',
+  backgroundColor: 'white',
+  boxShadow: '0 2px 16px rgba(0,0,0,0.07)'
 });
 
-export const WrongText = styled('span')({
-  color: '#5c1a1a',
-  fontWeight: 'bold'
+// 카드 상단 아이콘을 감싸는 원형 배경
+export const ResultIconCircle = styled(IconCircleBase)({
+  marginBottom: '8px',
+  backgroundColor: '#e8eeff'
 });
 
-export const EndButton = styled(Button)(({theme}) => ({
-  padding: '12px 40px',
-  borderRadius: '20px',
-  backgroundColor: '#aecbfa',
-  color: '#1a3a5c',
-  fontSize: '1rem',
-  fontWeight: 'bold',
-  textTransform: 'none',
-  boxShadow: 'none',
-  '&:hover': {
-    backgroundColor: '#aecbfa',
-    opacity: 0.85,
-    boxShadow: 'none'
-  },
-  [theme.breakpoints.up('sm')]: {
-    padding: '14px 56px',
-    fontSize: '1.125rem'
-  }
-}));
+// 다시 시작하기 버튼
+export const RestartButton = styled(PrimaryButton)({
+  width: '100%',
+  marginTop: '8px'
+});

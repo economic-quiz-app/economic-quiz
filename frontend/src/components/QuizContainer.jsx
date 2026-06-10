@@ -6,6 +6,8 @@ import QuizResult from './QuizResult.jsx';
 function QuizContainer({onExit, questions}) {
   const {
     currentQuestion,
+    currentQuestionIndex,
+    totalCount,
     score,
     selectedIndex,
     isAnswered,
@@ -13,7 +15,8 @@ function QuizContainer({onExit, questions}) {
     isAnswerShown,
     isEnd,
     isLast,
-    handleAnswer,
+    handleSelect,
+    handleSubmit,
     handleNext
   } = useQuiz(questions);
 
@@ -37,9 +40,12 @@ function QuizContainer({onExit, questions}) {
   return (
     <QuizQuestion
       question={currentQuestion}
+      currentIndex={currentQuestionIndex}
+      totalCount={totalCount}
       isAnswered={isAnswered}
       selectedIndex={selectedIndex}
-      onAnswer={handleAnswer}
+      onAnswer={handleSelect}
+      onSubmit={handleSubmit}
       onEnd={onExit}
     />
   );
