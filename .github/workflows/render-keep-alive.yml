@@ -10,7 +10,7 @@ on:
   schedule:
     # 10분마다 실행 (UTC 기준이지만 간격이라 시간대 무관)
     # GitHub Actions 크론은 지연이 잦아 15분 스핀다운 대비 여유를 둔다.
-    - cron: '*/10 * * * *'
+    - cron: '5-59/10 * * * *'
   # Actions 탭에서 수동 실행도 가능하게 함 (테스트용)
   workflow_dispatch:
 
