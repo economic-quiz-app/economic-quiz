@@ -20,15 +20,15 @@ const connectDb = () => {
 /** @param {import('mongodb').Db} database */
 const getQuizzes = database => database.collection('quizzes').find().toArray();
 
-const loadQuizzes = async () => {
-  const client = connectDb();
-
+const loadQuizzes = async (client = connectDb()) => {
   try {
     const database = client.db('economic-quiz-app');
 
     return await getQuizzes(database);
   } finally {
-    await client.close();
+    await client.close().catch(closeError => {
+      console.error('MongoDB 연결 종료 실패:', closeError);
+    });
   }
 };
 

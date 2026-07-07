@@ -1,7 +1,7 @@
 import {MongoClient} from 'mongodb';
 import {afterEach, describe, expect, it, vi} from 'vitest';
 
-import {connectDb, getQuizzes} from './loadQuizzes.js';
+import loadQuizzes, {connectDb, getQuizzes} from './loadQuizzes.js';
 
 describe('DB 연결 테스트', () => {
   afterEach(() => {
@@ -33,5 +33,26 @@ describe('getQuizzes', () => {
 
     expect(collection).toHaveBeenCalledWith('quizzes');
     expect(result).toEqual(mockQuizzes);
+  });
+});
+
+describe('loadQuizzes', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('쿼리 실패 후 client.close()도 실패하면, 원래 에러는 유지하고 close 에러는 로그만 남긴다', async () => {
+    const queryError = new Error('쿼리 실패');
+    const closeError = new Error('close 실패');
+    const toArray = vi.fn().mockRejectedValue(queryError);
+    const find = vi.fn(() => ({toArray}));
+    const collection = vi.fn(() => ({find}));
+    const db = vi.fn(() => ({collection}));
+    const close = vi.fn().mockRejectedValue(closeError);
+    const fakeClient = {db, close};
+    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    await expect(loadQuizzes(fakeClient)).rejects.toThrow('쿼리 실패');
+    expect(consoleErrorSpy).toHaveBeenCalledWith('MongoDB 연결 종료 실패:', closeError);
   });
 });
