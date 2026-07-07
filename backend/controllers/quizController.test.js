@@ -27,6 +27,10 @@ describe('GET /quizzes', () => {
     await request(app).get('/quizzes?count=0').expect(BAD_REQUEST);
   });
 
+  it(`count가 정수가 아닌 실수이면 ${BAD_REQUEST}을 반환한다`, async () => {
+    await request(app).get('/quizzes?count=1.5').expect(BAD_REQUEST);
+  });
+
   it(`count가 전체 개수를 초과하면 ${BAD_REQUEST}을 반환한다`, async () => {
     await request(app).get('/quizzes?count=10').expect(BAD_REQUEST);
   });
@@ -62,6 +66,10 @@ describe('GET /quizzes/:id', () => {
 
   it(`id가 0 이하이면 ${BAD_REQUEST}을 반환한다`, async () => {
     await request(app).get('/quizzes/0').expect(BAD_REQUEST);
+  });
+
+  it(`id가 정수가 아닌 실수이면 ${BAD_REQUEST}을 반환한다`, async () => {
+    await request(app).get('/quizzes/1.5').expect(BAD_REQUEST);
   });
 
   it(`존재하지 않는 id면 ${NOT_FOUND}를 반환한다`, async () => {
