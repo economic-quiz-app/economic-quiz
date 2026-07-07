@@ -1,6 +1,7 @@
 import {MongoClient} from 'mongodb';
 import {afterEach, describe, expect, it, vi} from 'vitest';
 
+import {createMockQuizzes} from '../fixtures/quizzes.js';
 import loadQuizzes, {connectDb, getQuizzes} from './loadQuizzes.js';
 
 describe('DB 연결 테스트', () => {
@@ -23,8 +24,7 @@ describe('DB 연결 테스트', () => {
 
 describe('getQuizzes', () => {
   it('quizzes 컬렉션에서 전체 문서를 조회한다', async () => {
-    const mockQuizzes = [{id: 1, question: '테스트 문제'}];
-    const toArray = vi.fn().mockResolvedValue(mockQuizzes);
+    const toArray = vi.fn().mockResolvedValue(createMockQuizzes());
     const find = vi.fn(() => ({toArray}));
     const collection = vi.fn(() => ({find}));
     const fakeDatabase = {collection};
@@ -32,7 +32,7 @@ describe('getQuizzes', () => {
     const result = await getQuizzes(fakeDatabase);
 
     expect(collection).toHaveBeenCalledWith('quizzes');
-    expect(result).toEqual(mockQuizzes);
+    expect(result).toEqual(createMockQuizzes());
   });
 });
 
