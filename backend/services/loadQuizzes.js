@@ -1,9 +1,6 @@
-import dotenv from 'dotenv';
 import {MongoClient, ServerApiVersion} from 'mongodb';
 
-dotenv.config();
-
-const connectDb = () => {
+const connectDb = function () {
   if (!process.env.MONGO_URI) {
     throw new Error('MONGO_URI가 설정되지 않았습니다.');
   }
@@ -18,9 +15,11 @@ const connectDb = () => {
 };
 
 /** @param {import('mongodb').Db} database */
-const getQuizzes = database => database.collection('quizzes').find().toArray();
+const getQuizzes = function (database) {
+  return database.collection('quizzes').find().toArray();
+};
 
-const loadQuizzes = async (client = connectDb()) => {
+const loadQuizzes = async function (client = connectDb()) {
   try {
     const database = client.db('economic-quiz-app');
 
