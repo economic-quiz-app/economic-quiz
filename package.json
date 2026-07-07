@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "start": "node ./backend/app.js",
-    "dev": "nodemon ./backend/app.js"
+    "test": "vitest run",
+    "start": "node ./backend/server.js",
+    "dev": "nodemon ./backend/server.js"
   },
   "repository": {
     "type": "git",
