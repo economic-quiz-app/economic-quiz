@@ -21,8 +21,6 @@
   },
   "homepage": "https://github.com/J8rl-Chik/economic-quiz#readme",
   "devDependencies": {
-    "@commitlint/cli": "^21.0.1",
-    "@commitlint/config-conventional": "^21.0.1",
     "@eslint/js": "^10.0.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@vitest/eslint-plugin": "^1.6.21",
