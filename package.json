@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "start": "node ./backend/app.js",
-    "dev": "nodemon ./backend/app.js"
+    "test": "vitest run",
+    "start": "node ./backend/server.js",
+    "dev": "nodemon ./backend/server.js"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,9 @@
   },
   "homepage": "https://github.com/J8rl-Chik/economic-quiz#readme",
   "devDependencies": {
-    "@commitlint/cli": "^21.0.1",
-    "@commitlint/config-conventional": "^21.0.1",
     "@eslint/js": "^10.0.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@vitest/eslint-plugin": "^1.6.21",
     "cors": "^2.8.6",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
@@ -33,6 +32,11 @@
     "husky": "^9.1.7",
     "mongodb": "^7.3.0",
     "nodemon": "^3.1.14",
-    "prettier": "3.8.3"
+    "prettier": "3.8.3",
+    "supertest": "^7.2.2",
+    "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }

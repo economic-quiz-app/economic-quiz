@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import vitest from '@vitest/eslint-plugin';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
 import {defineConfig} from 'eslint/config';
 import globals from 'globals';
@@ -24,6 +25,15 @@ export default defineConfig([
           argsIgnorePattern: '^_'
         }
       ]
+    }
+  },
+  {
+    files: ['**/*.test.{js,mjs,cjs}'],
+    plugins: {vitest},
+    rules: {
+      ...vitest.configs.recommended.rules,
+      // supertest의 request(...).expect(...) 체이닝도 assertion으로 인식하도록 확장
+      'vitest/expect-expect': ['error', {assertFunctionNames: ['expect', '**.expect']}]
     }
   },
   eslintConfigPrettier
