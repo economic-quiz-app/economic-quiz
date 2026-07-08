@@ -41,11 +41,24 @@ describe('GET /quizzes', () => {
     expect(response.body).toHaveLength(2);
   });
 
+  it('count가 전체 개수와 같으면 전체를 반환한다', async () => {
+    const response = await request(app).get(`/quizzes?count=${createQuizzes().length}`).expect(OK);
+
+    expect(response.body).toHaveLength(createQuizzes().length);
+  });
+
   it('random=true면 무작위 순서로 반환한다 (구성 원소는 동일)', async () => {
     const response = await request(app).get('/quizzes?random=true').expect(OK);
 
     expect(response.body).toHaveLength(createQuizzes().length);
     expect(response.body).toEqual(expect.arrayContaining(createQuizzes()));
+  });
+
+  it('random=true와 count를 함께 사용하면 무작위로 섞은 뒤 count만큼 잘라서 반환한다', async () => {
+    const response = await request(app).get('/quizzes?random=true&count=2').expect(OK);
+
+    expect(response.body).toHaveLength(2);
+    expect(createQuizzes()).toEqual(expect.arrayContaining(response.body));
   });
 
   it(`퀴즈가 하나도 없으면 빈 배열을 ${OK}로 반환한다`, async () => {
