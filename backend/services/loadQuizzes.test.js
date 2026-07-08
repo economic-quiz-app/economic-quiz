@@ -53,6 +53,13 @@ describe('getQuizzes', () => {
 describe('loadQuizzes', () => {
   afterEach(() => {
     vi.restoreAllMocks();
+    vi.unstubAllEnvs();
+  });
+
+  it('client를 넘기지 않고 MONGO_URI도 없으면, try/finally에 들어가지 못하고 rejected promise가 된다', async () => {
+    vi.stubEnv('MONGO_URI', undefined);
+
+    await expect(loadQuizzes()).rejects.toThrow('MONGO_URI가 설정되지 않았습니다.');
   });
 
   it('쿼리와 close가 모두 성공하면 조회 결과를 반환하고 client를 닫는다', async () => {
