@@ -67,6 +67,10 @@ describe('GET /quizzes', () => {
     await request(app).get('/quizzes').expect(OK, []);
   });
 
+  it(`count에 NoSQL 인젝션 형태의 값(예: {"$gt":0})을 넣어도 숫자가 아니므로 ${BAD_REQUEST}을 반환한다`, async () => {
+    await request(app).get('/quizzes').query({count: '{"$gt":0}'}).expect(BAD_REQUEST);
+  });
+
   it(`loadQuizzes가 실패하면 ${INTERNAL_SERVER_ERROR}을 반환한다`, async () => {
     loadQuizzes.mockRejectedValue(new Error('DB 에러'));
 
@@ -103,6 +107,10 @@ describe('GET /quizzes/:id', () => {
     loadQuizzes.mockResolvedValue([]);
 
     await request(app).get('/quizzes/1').expect(NOT_FOUND);
+  });
+
+  it(`id에 NoSQL 인젝션 형태의 값(예: {"$ne":null})을 넣어도 숫자가 아니므로 ${BAD_REQUEST}을 반환한다`, async () => {
+    await request(app).get(`/quizzes/${encodeURIComponent('{"$ne":null}')}`).expect(BAD_REQUEST);
   });
 
   it(`loadQuizzes가 실패하면 ${INTERNAL_SERVER_ERROR}을 반환한다`, async () => {
