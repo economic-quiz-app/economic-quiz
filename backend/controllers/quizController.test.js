@@ -48,6 +48,12 @@ describe('GET /quizzes', () => {
     expect(response.body).toEqual(expect.arrayContaining(createQuizzes()));
   });
 
+  it(`퀴즈가 하나도 없으면 빈 배열을 ${OK}로 반환한다`, async () => {
+    loadQuizzes.mockResolvedValue([]);
+
+    await request(app).get('/quizzes').expect(OK, []);
+  });
+
   it(`loadQuizzes가 실패하면 ${INTERNAL_SERVER_ERROR}을 반환한다`, async () => {
     loadQuizzes.mockRejectedValue(new Error('DB 에러'));
 
@@ -78,6 +84,12 @@ describe('GET /quizzes/:id', () => {
 
   it('존재하는 id면 해당 퀴즈를 반환한다', async () => {
     await request(app).get('/quizzes/1').expect(OK, createQuizzes()[0]);
+  });
+
+  it(`퀴즈가 하나도 없으면 ${NOT_FOUND}를 반환한다`, async () => {
+    loadQuizzes.mockResolvedValue([]);
+
+    await request(app).get('/quizzes/1').expect(NOT_FOUND);
   });
 
   it(`loadQuizzes가 실패하면 ${INTERNAL_SERVER_ERROR}을 반환한다`, async () => {
