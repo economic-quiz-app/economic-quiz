@@ -15,6 +15,12 @@ describe('DB 연결 테스트', () => {
     expect(() => connectDb()).toThrow('MONGO_URI가 설정되지 않았습니다.');
   });
 
+  it('MONGO_URI 형식이 잘못되면 에러를 던진다', () => {
+    vi.stubEnv('MONGO_URI', 'not-a-valid-uri');
+
+    expect(() => connectDb()).toThrow('Invalid scheme');
+  });
+
   it('MONGO_URI가 있으면 MongoClient 인스턴스를 반환한다', () => {
     vi.stubEnv('MONGO_URI', 'mongodb://localhost:27017');
 
