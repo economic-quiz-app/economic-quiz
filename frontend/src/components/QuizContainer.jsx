@@ -12,7 +12,6 @@ function QuizContainer({onExit, questions}) {
     selectedIndex,
     isAnswered,
     isCorrect,
-    isAnswerShown,
     isEnd,
     isLast,
     handleSelect,
@@ -24,7 +23,7 @@ function QuizContainer({onExit, questions}) {
     return <QuizResult score={score} onExit={onExit} />;
   }
 
-  if (isAnswerShown) {
+  if (isAnswered) {
     return (
       <QuizAnswer
         isCorrect={isCorrect}
