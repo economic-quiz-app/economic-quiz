@@ -5,12 +5,14 @@ import {RestartButton, ResultCard, ResultIconCircle, ResultWrapper} from '../sty
 
 function QuizResult({score, onExit}) {
   const total = score.correct + score.wrong;
-  const percentage = Math.round((score.correct / total) * 100);
-  const motivation = score.correct === total
-    ? '완벽합니다! 모든 문제를 맞혔어요!'
-    : score.correct >= total / 2
-      ? '잘 하셨어요! 조금만 더 연습하면 완벽해질 거예요!'
-      : '다시 도전해보세요! 연습하면 더 나아질 거예요! 💪';
+  const percentage = total > 0 ? Math.round((score.correct / total) * 100) : 0;
+  const motivation = total === 0
+    ? '아직 푼 문제가 없습니다.'
+    : score.correct === total
+      ? '완벽합니다! 모든 문제를 맞혔어요!'
+      : score.correct >= total / 2
+        ? '잘 하셨어요! 조금만 더 연습하면 완벽해질 거예요!'
+        : '다시 도전해보세요! 연습하면 더 나아질 거예요! 💪';
 
   return (
     <ResultWrapper>
@@ -26,7 +28,7 @@ function QuizResult({score, onExit}) {
         <Typography fontSize="2.5rem" fontWeight="bold" color="#1a1a1a">
           {score.correct}
           <Typography component="span" fontSize="1.25rem" fontWeight="normal" color="#888">
-            /5
+            /{total}
           </Typography>
         </Typography>
 

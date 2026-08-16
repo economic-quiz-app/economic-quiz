@@ -51,7 +51,11 @@ function Quiz() {
           </Box>
         </InfoCard>
 
-        <StartButton variant="contained" onClick={() => setStarted(true)} disabled={isLoading || isError}>
+        <StartButton
+          variant="contained"
+          onClick={() => setStarted(true)}
+          disabled={isLoading || isError || questions.length === 0}
+        >
           시작하기
         </StartButton>
 
@@ -64,6 +68,12 @@ function Quiz() {
         {isError && (
           <Typography fontSize="0.8rem" color="#d93a3a" textAlign="center">
             문제를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
+          </Typography>
+        )}
+
+        {!isLoading && !isError && questions.length === 0 && (
+          <Typography fontSize="0.8rem" color="#d93a3a" textAlign="center">
+            출제할 문제가 없습니다. 잠시 후 다시 시도해주세요.
           </Typography>
         )}
       </QuizCard>
