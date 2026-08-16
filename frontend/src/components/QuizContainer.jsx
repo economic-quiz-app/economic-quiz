@@ -41,7 +41,6 @@ function QuizContainer({onExit, questions}) {
       question={currentQuestion}
       currentIndex={currentQuestionIndex}
       totalCount={totalCount}
-      isAnswered={isAnswered}
       selectedIndex={selectedIndex}
       onAnswer={handleSelect}
       onSubmit={handleSubmit}
