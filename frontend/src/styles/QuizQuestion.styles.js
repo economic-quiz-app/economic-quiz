@@ -12,7 +12,7 @@ export const CardWrapper = styled(Box)({
   backgroundColor: '#f0f4ff'
 });
 
-// 상단 진행 정보 행 — "문제 N / 5" 텍스트와 "종료" 버튼을 양 끝에 배치
+// 상단 진행 정보 행 — "문제 N / 총 문제 수" 텍스트와 "종료" 버튼을 양 끝에 배치
 export const ProgressHeader = styled(Box)({
   display: 'flex',
   alignItems: 'center',
