@@ -1,10 +1,11 @@
 import ShowChartIcon from '@mui/icons-material/ShowChart';
-import {Box, Typography} from '@mui/material';
+import {Typography} from '@mui/material';
 import {useState} from 'react';
 
 import useQuestions from '../hooks/useQuestions.js';
-import {IconCircle, InfoBadge, InfoCard, QuizCard, QuizWrapper, StartButton} from '../styles/Quiz.styles.js';
+import {IconCircle, QuizCard, QuizWrapper, StartButton} from '../styles/Quiz.styles.js';
 import QuizContainer from './QuizContainer.jsx';
+import QuizInfoCard from './QuizInfoCard.jsx';
 
 function Quiz() {
   const [isStarted, setStarted] = useState(false);
@@ -31,25 +32,19 @@ function Quiz() {
           새로운 지식을 배워보세요
         </Typography>
 
-        <InfoCard>
-          <InfoBadge size="24px" sx={{backgroundColor: '#dde4ff', color: '#3a5bd9', fontSize: '0.75rem'}}>
-            5
-          </InfoBadge>
-          <Box sx={{display: 'flex', flexDirection: 'column', gap: '2px'}}>
-            <Typography fontSize="0.875rem" fontWeight="bold" color="#222">총 5개의 문제</Typography>
-            <Typography fontSize="0.8rem" color="#888">각 문제마다 4개의 선택지가 제공됩니다</Typography>
-          </Box>
-        </InfoCard>
+        <QuizInfoCard
+          badge="5"
+          badgeSx={{backgroundColor: '#dde4ff', fontSize: '0.75rem'}}
+          title="총 5개의 문제"
+          description="각 문제마다 4개의 선택지가 제공됩니다"
+        />
 
-        <InfoCard>
-          <InfoBadge size="24px" sx={{backgroundColor: '#e8eeff', color: '#3a5bd9'}}>
-            ✓
-          </InfoBadge>
-          <Box sx={{display: 'flex', flexDirection: 'column', gap: '2px'}}>
-            <Typography fontSize="0.875rem" fontWeight="bold" color="#222">즉시 피드백</Typography>
-            <Typography fontSize="0.8rem" color="#888">각 문제의 정답과 해설을 바로 확인하세요</Typography>
-          </Box>
-        </InfoCard>
+        <QuizInfoCard
+          badge="✓"
+          badgeSx={{backgroundColor: '#e8eeff'}}
+          title="즉시 피드백"
+          description="각 문제의 정답과 해설을 바로 확인하세요"
+        />
 
         <StartButton
           variant="contained"
