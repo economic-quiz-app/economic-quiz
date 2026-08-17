@@ -7,9 +7,18 @@ import {IconCircle, QuizCard, QuizWrapper, StartButton} from '../styles/Quiz.sty
 import QuizContainer from './QuizContainer.jsx';
 import QuizInfoCard from './QuizInfoCard.jsx';
 
+const STATUS_MESSAGE = {
+  loading: {text: '문제를 불러오는 중입니다...', color: '#999'},
+  error: {text: '문제를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.', color: '#d93a3a'},
+  empty: {text: '출제할 문제가 없습니다. 잠시 후 다시 시도해주세요.', color: '#d93a3a'}
+};
+
 function Quiz() {
   const [isStarted, setStarted] = useState(false);
   const {questions, isLoading, isError} = useQuestions();
+
+  const status = isLoading ? 'loading' : isError ? 'error' : questions.length === 0 ? 'empty' : 'ready';
+  const message = STATUS_MESSAGE[status];
 
   if (isStarted) {
     return <QuizContainer onExit={() => setStarted(false)} questions={questions} />;
@@ -46,29 +55,13 @@ function Quiz() {
           description="각 문제의 정답과 해설을 바로 확인하세요"
         />
 
-        <StartButton
-          variant="contained"
-          onClick={() => setStarted(true)}
-          disabled={isLoading || isError || questions.length === 0}
-        >
+        <StartButton variant="contained" onClick={() => setStarted(true)} disabled={status !== 'ready'}>
           시작하기
         </StartButton>
 
-        {isLoading && (
-          <Typography fontSize="0.8rem" color="#999" textAlign="center">
-            문제를 불러오는 중입니다...
-          </Typography>
-        )}
-
-        {isError && (
-          <Typography fontSize="0.8rem" color="#d93a3a" textAlign="center">
-            문제를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
-          </Typography>
-        )}
-
-        {!isLoading && !isError && questions.length === 0 && (
-          <Typography fontSize="0.8rem" color="#d93a3a" textAlign="center">
-            출제할 문제가 없습니다. 잠시 후 다시 시도해주세요.
+        {message && (
+          <Typography fontSize="0.8rem" color={message.color} textAlign="center">
+            {message.text}
           </Typography>
         )}
       </QuizCard>
