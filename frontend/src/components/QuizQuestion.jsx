@@ -11,7 +11,7 @@ import {
 } from '../styles/QuizQuestion.styles.js';
 import QuizButton from './QuizButton.jsx';
 
-function QuizQuestion({question, currentIndex, totalCount, isAnswered, selectedIndex, onAnswer, onSubmit, onEnd}) {
+function QuizQuestion({question, currentIndex, totalCount, selectedIndex, onAnswer, onSubmit, onEnd}) {
   const progress = (currentIndex / totalCount) * 100;
 
   return (
@@ -30,12 +30,7 @@ function QuizQuestion({question, currentIndex, totalCount, isAnswered, selectedI
           {question.question}
         </Typography>
 
-        <QuizButton
-          choices={question.choices}
-          onAnswer={onAnswer}
-          disabled={isAnswered}
-          selectedIndex={selectedIndex}
-        />
+        <QuizButton choices={question.choices} onAnswer={onAnswer} selectedIndex={selectedIndex} />
       </QuestionCard>
 
       <SubmitButtonWrapper>

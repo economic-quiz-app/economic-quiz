@@ -11,7 +11,7 @@ import {
   ExplanationCard,
   NextButton,
   StopButton
-} from '../styles/QuizQuestion.styles.js';
+} from '../styles/QuizAnswer.styles.js';
 
 function QuizAnswer({isCorrect, correctAnswer, explanation, isLast, onNext, onEnd}) {
   return (

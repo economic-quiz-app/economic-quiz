@@ -1,6 +1,6 @@
 import {Box, Button, styled} from '@mui/material';
 
-// 전체 화면을 채우는 레이아웃 컨테이너 — Quiz, QuizResult 화면에서 공통 사용
+// 전체 화면을 채우는 레이아웃 컨테이너 — QuizIntro, QuizResult 화면에서 공통 사용
 // minHeight: '100dvh' — 모바일 주소창을 제외한 실제 화면 높이 기준
 // alignItems/justifyContent: 'center' — 자식 카드를 화면 정중앙에 배치
 export const ScreenWrapper = styled(Box)({
@@ -13,7 +13,7 @@ export const ScreenWrapper = styled(Box)({
   backgroundColor: '#f0f4ff'
 });
 
-// 원형 아이콘 배경 — Quiz, QuizResult 화면에서 공통 사용
+// 원형 아이콘 배경 — QuizIntro, QuizInfoCard, QuizAnswer, QuizResult에서 공통 사용
 // borderRadius: '50%' — 정사각형 Box를 원형으로 만드는 방법
 // size prop으로 크기를 조절 (기본값 '72px')
 export const IconCircleBase = styled(Box)(({size = '72px'}) => ({
