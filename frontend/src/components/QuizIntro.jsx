@@ -1,7 +1,7 @@
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import {Typography} from '@mui/material';
 
-import {IconCircle, QuizCard, QuizWrapper, StartButton} from '../styles/Quiz.styles.js';
+import {IconCircle, QuizCard, QuizWrapper, StartButton} from '../styles/QuizIntro.styles.js';
 import QuizInfoCard from './QuizInfoCard.jsx';
 
 const STATUS_MESSAGE = {

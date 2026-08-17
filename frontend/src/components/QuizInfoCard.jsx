@@ -1,6 +1,6 @@
 import {Box, Typography} from '@mui/material';
 
-import {InfoBadge, InfoCard} from '../styles/Quiz.styles.js';
+import {InfoBadge, InfoCard} from '../styles/QuizInfoCard.styles.js';
 
 function QuizInfoCard({badge, badgeSx, title, description}) {
   return (
