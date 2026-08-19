@@ -6,7 +6,11 @@
   "scripts": {
     "test": "vitest run",
     "start": "node ./backend/server.js",
-    "dev": "nodemon ./backend/server.js"
+    "dev": "nodemon ./backend/server.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -27,9 +31,9 @@
     "cors": "^2.8.6",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "express": "^5.2.1",
     "globals": "^17.6.0",
-    "husky": "^9.1.7",
     "mongodb": "^7.3.0",
     "nodemon": "^3.1.14",
     "prettier": "3.8.3",

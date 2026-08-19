@@ -110,7 +110,9 @@ describe('GET /quizzes/:id', () => {
   });
 
   it(`id에 NoSQL 인젝션 형태의 값(예: {"$ne":null})을 넣어도 숫자가 아니므로 ${BAD_REQUEST}을 반환한다`, async () => {
-    await request(app).get(`/quizzes/${encodeURIComponent('{"$ne":null}')}`).expect(BAD_REQUEST);
+    await request(app)
+      .get(`/quizzes/${encodeURIComponent('{"$ne":null}')}`)
+      .expect(BAD_REQUEST);
   });
 
   it(`loadQuizzes가 실패하면 ${INTERNAL_SERVER_ERROR}을 반환한다`, async () => {
