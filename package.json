@@ -8,7 +8,9 @@
     "start": "node ./backend/server.js",
     "dev": "nodemon ./backend/server.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
