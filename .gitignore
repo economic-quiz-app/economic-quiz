@@ -1,8 +1,3 @@
 **/node_modules
 **/dist
 **/.env
-
-# 개인 기록
-CLAUDE.md
-RETROSPECTIVE.md
-TEAM-DISCUSSION.md
